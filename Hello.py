@@ -1,8 +1,8 @@
+
 import streamlit as st
 from openai import OpenAI
 import time
 import random
-
 
 
 client = OpenAI()
@@ -19,33 +19,36 @@ if 'article_generated' not in st.session_state:
 if 'ai_generate' not in st.session_state:
     st.session_state.ai_generate = ""
 
+if 'status_check' not in st.session_state:
+	st.session_state.status_check = 0
 
 
-thread_created = 0
+
 assistandid = "asst_271d6dtCJd3QxDvSpU1rzYJd"
 
 if 'threadid' not in st.session_state:
-    st.session_state.threadid = "thread_8q5XgvGHNjeMYk2MfJrW4bqh"
-
-
+    st.session_state.threadid = "Generate to create thread id"
+ 
 
 
 def create_thread():
-    if thread_created == 0:
-        thread = client.beta.threads.create()
-        st.session_state.threadid = thread.id
-    else:
-        print("Thread have created")
+	thread = client.beta.threads.create()
+	st.session_state.threadid = thread.id
+
+	return st.session_state.threadid
+    
 
 
 
 
 def save_message(message):
+
     message = client.beta.threads.messages.create(
     thread_id=st.session_state.threadid,
     role="user",
     content= message
     )
+    st.session_state.status_check = 1
 
 
 
@@ -54,6 +57,8 @@ def run_open_AI():
     thread_id=st.session_state.threadid,
     assistant_id=assistandid  
     )
+    st.session_state.status_check = 2
+
 
     
     while run.status != "completed":
@@ -75,18 +80,81 @@ def run_open_AI():
     else:
         print(run.status)
     #return ai_generate
+    st.session_state.status_check = 3
+
+
+
+
+def buttonstyle_1():
+
+	message = "revise the previou sarticle you generated to be more entertaining and bit more humourous. hide your thinking process and just deliver the revise article."
+	st.session_state.article_generated.append(message)
+
+	save_message(message)
+	run_open_AI()
+
+
+def buttonstyle_2():
+
+    message = "revise the previous article you have generated to 'Old english' style of writing. "
+    st.session_state.article_generated.append(message)
+
+    save_message(message)
+    run_open_AI()
+	
+
+def buttonstyle_3():
+
+    message = "revise the previous article you have generated to follow the new style as follows.  As a creative writer focused on game writing content, I bring humor and an informal style to my responses. I use simple language, avoiding complex words, and employ pop culture references and analogies to make game information both accessible and entertaining. My content is structured as a listicle with clear, catchy headings. I engage readers directly by using a conversational tone, posing questions, and encouraging interaction. I balance detail with brevity . I'm designed to help users understand and enjoy game information through engaging, humorous writing."
+    st.session_state.article_generated.append(message)
+
+    save_message(message)
+    run_open_AI()
+
+
+def buttonstyle_4():
+
+    message = "Infuse consistent humor throughout your writing, including jokes, witty remarks, and amusing observations to keep it light and engaging. Employ imaginative analogies and metaphors to help the reader visualize and understand concepts in unexpected and memorable ways. Use conversational language that mimics advice from a witty and knowledgeable friend, making the tone informal and accessible. Utilize playful exaggeration for comedic effect, highlighting the absurdities or challenges of the topic in a light-hearted manner. Assign human attributes or behaviors to non-human elements (personification) to make the content more relatable and amusing. Craft an engaging introduction and conclusion with strong, humorous notes, setting a playful tone at the start and concluding with a punchline or insightful amusement at the end. Directly address the reader using 'you' to create a personal and engaging narrative, incorporating humorous asides and rhetorical questions to enhance engagement."
+    st.session_state.article_generated.append(message)
+
+    save_message(message)
+    run_open_AI()
+
+
+def regen():
+
+	message = "Regenerate again"
+	st.session_state.article_generated.append(message)
+
+	save_message(message)
+	run_open_AI()
+
+
+
+
+
+def download_article():
+	full_article = "\n\n\n\n".join(st.session_state.article_generated)
+
+	return full_article
+
 
 
 def main(message):
+	st.session_state.article_generated.append(message)
 
-    #create_thread()
-    save_message(message)
-    run_open_AI()
+	if st.session_state.threadid == "Generate to create thread id":
+		create_thread()
+
+	save_message(message)
+	run_open_AI()
     #processing()
     #ai_generate.append("fasefe")
+    
 
-   
-threadtest = st.session_state.threadid    
+
+
+  
 
 
 
@@ -114,17 +182,23 @@ with st.container():
     with col2: #button
         if st.button("Generate", use_container_width = True):
             main(user_request)
-            st.session_state.article_generated.append(user_request)
+            
 
 
         st.divider()
         col1, col2 = st.columns([0.5, 0.5])
         with col1:
-            st.button("Style 1", use_container_width = True)
-            st.button("Style 2", use_container_width = True)
+            if st.button("Style 1", use_container_width = True):
+            	buttonstyle_1()
+            	
+
+            if st.button("Style 2", use_container_width = True):
+                buttonstyle_2()
         with col2:
-            st.button("Style 3", use_container_width = True)
-            st.button("Style 4", use_container_width = True)
+            if st.button("Style 3", use_container_width = True):
+                buttonstyle_3()
+            if st.button("Style 4", use_container_width = True):
+                buttonstyle_4()
 
 
 
@@ -138,11 +212,13 @@ with st.container():
 
 
     with col2:
-        st.status("Running", state = "running")
-        st.write(threadtest)
+        st.status("Ready to start.",state = "running", expanded=False)
+           
+
+        st.write(st.session_state.threadid)
 
     with col3:
-        st.button("Download",use_container_width = True)
+        st.download_button("Download", data = download_article() , use_container_width = True)
         if st.button("New Thread", use_container_width = True):
             create_thread()
 
@@ -151,7 +227,17 @@ with st.container():
 
 
 st.divider()
-st.write("Output")
+
+with st.container(border = None):
+	 col1, col2 = st.columns([18,4])
+
+	 with col1:
+	 	st.subheader("Output")
+
+	 with col2:
+	 	if st.button("Regenerate", use_container_width = True):
+	 		regen()
+	 		st.session_state.article_generated.append(user_request)
 
 
 
@@ -166,6 +252,7 @@ with st.expander("Previous response"):
     #st.write(cache_section())
     
         st.write(st.session_state.article_generated)
+
 
 
 
