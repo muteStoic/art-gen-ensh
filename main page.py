@@ -7,6 +7,12 @@ import random
 
 client = OpenAI()
 
+st.set_page_config(
+    page_title= "Main page"
+    
+)
+
+
 top_text = "What article do you want to generate today?"
 
 
