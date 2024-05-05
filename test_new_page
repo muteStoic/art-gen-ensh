@@ -1,0 +1,46 @@
+import time
+import streamlit as st
+
+
+if 'timer' not in st.session_state:
+    st.session_state.timer = 0
+
+
+def runmain():
+    
+    runai2()
+
+
+def runai():
+    time.sleep(1)
+    while st.session_state.timer < 10:
+        st.spinner(st.session_state.timer)
+        time.sleep(1)
+            
+        st.session_state.timer = st.session_state.timer + 1
+        print(st.session_state.timer)
+
+    print(st.session_state.timer)
+    st.session_state.timer = 0
+
+    
+def runai2():
+    
+
+
+    with st.status("Downloading data...") as status:
+        while st.session_state.timer < 10:
+            test = str(st.session_state.timer)
+            status.update(label = test)
+            time.sleep(1)
+            st.session_state.timer = st.session_state.timer + 1
+            print(st.session_state.timer)
+            
+
+        st.session_state.timer = 0
+
+
+
+
+if st.button("start"): 
+    runmain()   
