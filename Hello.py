@@ -20,7 +20,10 @@ if 'ai_generate' not in st.session_state:
     st.session_state.ai_generate = ""
 
 if 'status_check' not in st.session_state:
-	st.session_state.status_check = 0
+    st.session_state.status_check = False
+
+if 'timer' not in st.session_state:
+    st.session_state.timer = 0
 
 
 
@@ -31,67 +34,17 @@ if 'threadid' not in st.session_state:
  
 
 
-def create_thread():
-	thread = client.beta.threads.create()
-	st.session_state.threadid = thread.id
-
-	return st.session_state.threadid
-    
-
-
-
-
-def save_message(message):
-
-    message = client.beta.threads.messages.create(
-    thread_id=st.session_state.threadid,
-    role="user",
-    content= message
-    )
-    st.session_state.status_check = 1
-
-
-
-def run_open_AI():
-    run = client.beta.threads.runs.create_and_poll(
-    thread_id=st.session_state.threadid,
-    assistant_id=assistandid  
-    )
-    st.session_state.status_check = 2
-
-
-    
-    while run.status != "completed":
-        time.sleep(1)
-        print(run.status)
-
-    if run.status == 'completed': 
-        messages = client.beta.threads.messages.list(thread_id=st.session_state.threadid)
-        print(messages)
-
-        last_message = messages.data[0]
-        response = last_message.content[0].text.value
-        print(response)
-        st.session_state.article_generated.append(response)
-        st.session_state.ai_generate = response
-        #ai_generate.append(response)
-        
-
-    else:
-        print(run.status)
-    #return ai_generate
-    st.session_state.status_check = 3
 
 
 
 
 def buttonstyle_1():
 
-	message = "revise the previou sarticle you generated to be more entertaining and bit more humourous. hide your thinking process and just deliver the revise article."
-	st.session_state.article_generated.append(message)
+    message = "revise the previou sarticle you generated to be more entertaining and bit more humourous. hide your thinking process and just deliver the revise article."
+    st.session_state.article_generated.append(message)
 
-	save_message(message)
-	run_open_AI()
+    save_message(message)
+    run_open_AI()
 
 
 def buttonstyle_2():
@@ -101,7 +54,7 @@ def buttonstyle_2():
 
     save_message(message)
     run_open_AI()
-	
+    
 
 def buttonstyle_3():
 
@@ -121,38 +74,114 @@ def buttonstyle_4():
     run_open_AI()
 
 
+
+def create_thread():
+    thread = client.beta.threads.create()
+    st.session_state.threadid = thread.id
+
+    return st.session_state.threadid
+    
+
+
+
+
+def save_message(message):
+
+    message = client.beta.threads.messages.create(
+    thread_id=st.session_state.threadid,
+    role="user",
+    content= message
+    )
+    
+
+
+
+def run_open_AI():
+
+    run = client.beta.threads.runs.create_and_poll(
+    thread_id=st.session_state.threadid,
+    assistant_id=assistandid  
+    )
+    
+
+
+    
+    #while run.status != "completed":
+        #time.sleep(1)
+        #print(run.status)
+
+    
+
+    if run.status == 'completed': 
+        messages = client.beta.threads.messages.list(thread_id=st.session_state.threadid)
+        print(messages)
+
+        last_message = messages.data[0]
+        response = last_message.content[0].text.value
+        print(response)
+        st.session_state.article_generated.append(response)
+        st.session_state.ai_generate = response
+        #ai_generate.append(response)
+        
+
+    else:
+        
+        print(run.status)
+        st.toast("Generating Failed. Regenerating Article")
+
+            
+        run_open_AI()
+            
+    #return ai_generate
+    
+
+
+
 def regen():
 
-	message = "Regenerate again"
-	st.session_state.article_generated.append(message)
+    message = "Regenerate again"
+    st.session_state.article_generated.append(message)
 
-	save_message(message)
-	run_open_AI()
-
-
-
+    save_message(message)
+    run_open_AI()
 
 
 def download_article():
-	full_article = "\n\n\n\n".join(st.session_state.article_generated)
+    full_article = "\n\n\n\n".join(st.session_state.article_generated)
 
-	return full_article
+    return full_article
 
 
 
 def main(message):
-	st.session_state.article_generated.append(message)
+    
+    st.session_state.article_generated.append(message)
 
-	if st.session_state.threadid == "Generate to create thread id":
-		create_thread()
+    if st.session_state.threadid == "Generate to create thread id":
+        with st.spinner('Creating thread'):
+            create_thread()
 
-	save_message(message)
-	run_open_AI()
+    with st.spinner('Sending Message'):
+        save_message(message)
+
+    with st.spinner('Generating Article'):
+        run_open_AI()
+
+    st.session_state.status_check = False
+
+    
+            
+
+        #st.session_state.timer = 0
     #processing()
     #ai_generate.append("fasefe")
     
 
 
+if st.session_state.article_generated == []:
+    st.session_state.status_check = True
+else:
+    st.session_state.status_check = False
 
   
 
@@ -188,16 +217,15 @@ with st.container():
         st.divider()
         col1, col2 = st.columns([0.5, 0.5])
         with col1:
-            if st.button("Style 1", use_container_width = True):
-            	buttonstyle_1()
-            	
+            if st.button("Style 1", use_container_width = True, disabled = st.session_state.status_check):
+                buttonstyle_1()
 
-            if st.button("Style 2", use_container_width = True):
+            if st.button("Style 2", use_container_width = True, disabled = st.session_state.status_check):
                 buttonstyle_2()
         with col2:
-            if st.button("Style 3", use_container_width = True):
+            if st.button("Style 3", use_container_width = True, disabled = st.session_state.status_check):
                 buttonstyle_3()
-            if st.button("Style 4", use_container_width = True):
+            if st.button("Style 4", use_container_width = True, disabled = st.session_state.status_check):
                 buttonstyle_4()
 
 
@@ -218,8 +246,8 @@ with st.container():
         st.write(st.session_state.threadid)
 
     with col3:
-        st.download_button("Download", data = download_article() , use_container_width = True)
-        if st.button("New Thread", use_container_width = True):
+        st.download_button("Download", data = download_article() , use_container_width = True, disabled = st.session_state.status_check)
+        if st.button("New Thread", use_container_width = True,disabled = st.session_state.status_check):
             create_thread()
 
 
@@ -229,15 +257,15 @@ with st.container():
 st.divider()
 
 with st.container(border = None):
-	 col1, col2 = st.columns([18,4])
+     col1, col2 = st.columns([18,4])
 
-	 with col1:
-	 	st.subheader("Output")
+     with col1:
+        st.subheader("Output")
 
-	 with col2:
-	 	if st.button("Regenerate", use_container_width = True):
-	 		regen()
-	 		st.session_state.article_generated.append(user_request)
+     with col2:
+        if st.button("Regenerate", use_container_width = True,disabled = st.session_state.status_check):
+            regen()
+            st.session_state.article_generated.append(user_request)
 
 
 
@@ -254,7 +282,4 @@ with st.expander("Previous response"):
         st.write(st.session_state.article_generated)
 
 
-
-
-
-
+print(st.session_state.status_check)
