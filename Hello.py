@@ -7,8 +7,6 @@ import random
 
 client = OpenAI()
 
-
-
 top_text = "What article do you want to generate today?"
 
 
