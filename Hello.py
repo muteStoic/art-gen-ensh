@@ -194,9 +194,7 @@ else:
 
 
 
-# Using "with" notation
-with st.sidebar:
-    st.write("Sidebar section: WIP")
+st.sidebar.success("select page above")
 
 
 st.header(top_text, divider = "violet")
