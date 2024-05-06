@@ -18,7 +18,7 @@ dff = pd.DataFrame( {
       "pet": [4, 1, 5, 10],
       "z": [4, 1, 5, 0]
    })
-cell_val = dff.iloc[4]["pet"]
+cell_val = dff.iloc[3]["pet"]
 
 st.write(cell_val)
 
