@@ -12,7 +12,7 @@ df = conn.read()
 userDb = conn.read(
     spreadsheet ="https://docs.google.com/spreadsheets/d/1QIbtWBhbykxaEGtE3bb_vFz5yGnyiUF6Lll1S_IdhCc/edit?usp=sharing")
 
-dff = userDb.at[2,"name"]
+dff = userDb.at[0,"name"]
 
 
 
@@ -24,14 +24,16 @@ dff = userDb.at[2,"name"]
 st.dataframe(userDb)
 
 st.write(dff)
-st.dataframe(df)
 
 userid = st.text_input("User Id")
 
 userpwd = st.text_input("User Password")
 
 if st.button("Login"):
-    with st.write("log in test"):
-        time.sleep(3)
+    st.write("log in test")
+    if userid == userDb.at[0,"name"]:
+        username = "the user is " + userDb.at[0,"name"]
+        st.write("the user is ")
+        
 
 
