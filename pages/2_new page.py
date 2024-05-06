@@ -10,7 +10,7 @@ st.write("test4")
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
 
-df = conn.read(worksheet = "Sheet1")
+df = conn.read()
 #df2 = conn.read(worksheet = "Sheet3")
 singlecell = conn.read(usecols = [0])
 
