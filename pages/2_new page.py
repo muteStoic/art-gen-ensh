@@ -14,8 +14,8 @@ df = conn.read()
 singlecell = conn.read(usecols = [0])
 
 dff = pd.DataFrame({conn})
-st.write(f"{2.name} has a :{2.pet}:")
-#cell_val = dff.iloc[3]["pet"]
+
+cell_val = dff.iat[2,2]
 
 st.write(cell_val)
 
