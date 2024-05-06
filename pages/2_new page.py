@@ -10,12 +10,14 @@ st.write("test4")
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
 
-df = conn.read(worksheet = 1)
+df = conn.read()
 #df2 = conn.read(worksheet = "Sheet3")
-singlecell = conn.read(usecols = [0])
+singlecell = conn.read(
+    spreadsheet ="https://docs.google.com/spreadsheets/d/1Y5oaJN_XDAy6iM7yVAKKqIofI1WICOmYKWCD3OVQ8E0/edit?usp=sharing" ,
+    worksheet = "Sheet1")
 
 #dff = pd.DataFrame({singlecell})
-dff = df.at[3,"name"]
+dff = singlecell.at[3,"name"]
 
 #id_loc = dff.at[3,"name"]
 
