@@ -10,15 +10,15 @@ st.write("test4")
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
 
-df = conn.read()
-df2 = conn.read(worksheet = "Sheet3")
+df = conn.read(worksheet = "Sheet1")
+#df2 = conn.read(worksheet = "Sheet3")
 singlecell = conn.read(usecols = [0])
 
 dff = pd.DataFrame({conn})
 
-id_loc = df2.at[3,"id"]
+#id_loc = df2.at[3,"id"]
 
-st.write(id_loc)
+#st.write(id_loc)
 
 
 
