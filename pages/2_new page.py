@@ -13,7 +13,7 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 df = conn.read()
 singlecell = conn.read(usecols = [0])
 
-dff = pd.DataFrame({conn})
+dff = pd.DataFrame({df})
 
 st.write(dff)
 
