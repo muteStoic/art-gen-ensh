@@ -14,9 +14,10 @@ df = conn.read()
 #df2 = conn.read(worksheet = "Sheet3")
 singlecell = conn.read(usecols = [0])
 
-dff = pd.DataFrame({singlecell})
+#dff = pd.DataFrame({singlecell})
+dff = df.at[3,"name"]
 
-id_loc = dff.at[3,"name"]
+#id_loc = dff.at[3,"name"]
 
 #st.write(id_loc)
 
