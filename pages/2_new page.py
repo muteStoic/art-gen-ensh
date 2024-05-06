@@ -15,7 +15,7 @@ singlecell = conn.read(usecols = [0])
 
 dff = pd.DataFrame({conn})
 
-st.write(dff)
+st.write(df.at[4,"pet"])
 
 
 for row in df.itertuples():
