@@ -15,10 +15,10 @@ singlecell = conn.read(usecols = [0])
 
 dff = pd.DataFrame( {
       "x": [5, 2, 1, 9],
-      "y": [4, 1, 5, 10],
+      "pet": [4, 1, 5, 10],
       "z": [4, 1, 5, 0]
    })
-cell_val = dff.iloc[2]["y"]
+cell_val = dff.iloc[2]["pet"]
 
 st.write(cell_val)
 
