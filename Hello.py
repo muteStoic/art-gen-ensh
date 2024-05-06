@@ -280,4 +280,3 @@ with st.expander("Previous response"):
         st.write(st.session_state.article_generated)
 
 
-print(st.session_state.status_check)

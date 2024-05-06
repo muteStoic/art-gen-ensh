@@ -67,7 +67,7 @@ if st.button("Login"):
     if st.session_state.userfound == False:
         st.write("no user found")
 
-st.write(st.session_state.status_check)
+st.write(st.session_state.threadid)
         
 
 
