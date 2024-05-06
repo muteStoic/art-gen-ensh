@@ -13,8 +13,7 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 df = conn.read()
 #df2 = conn.read(worksheet = "Sheet3")
 singlecell = conn.read(
-    spreadsheet ="https://docs.google.com/spreadsheets/d/1Y5oaJN_XDAy6iM7yVAKKqIofI1WICOmYKWCD3OVQ8E0/edit?usp=sharing" ,
-    worksheet = "Sheet1")
+    spreadsheet ="https://docs.google.com/spreadsheets/d/1Y5oaJN_XDAy6iM7yVAKKqIofI1WICOmYKWCD3OVQ8E0/edit?usp=sharing")
 
 #dff = pd.DataFrame({singlecell})
 dff = singlecell.at[3,"name"]
