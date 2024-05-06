@@ -15,7 +15,7 @@ singlecell = conn.read(usecols = [0])
 
 dff = pd.DataFrame({conn})
 
-cell_val = dff.iat[2,2]
+st.write(dff)
 
 st.write(cell_val)
 
