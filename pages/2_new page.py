@@ -13,5 +13,6 @@ df = conn.read()
 singlecell = conn.read(usecols= [0,1])
 
 
+
 st.dataframe(df)
-st.write("test3")
+st.write(singlecell)
