@@ -12,11 +12,11 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 
 df = conn.read()
 #df2 = conn.read(worksheet = "Sheet3")
-singlecell = conn.read(usecols = [0])
+singlecell = conn.read()
 
-dff = pd.DataFrame({conn})
+dff = pd.DataFrame({singlecell})
 
-#id_loc = df2.at[3,"id"]
+id_loc = dff.at[3,"name"]
 
 #st.write(id_loc)
 
