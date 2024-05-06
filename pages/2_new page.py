@@ -10,9 +10,10 @@ st.write("test4")
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 df = conn.read()
-singlecell = conn.iloc[2,2]
+singlecell = conn.read(usecols = [0])
 
-
+for row in df.itertuples():
+    st.write(f"{row.name} has a :{row.pet}:")
 
 st.dataframe(df)
 st.write(singlecell)
