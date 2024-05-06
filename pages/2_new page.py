@@ -11,7 +11,7 @@ st.write("test4")
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 df = conn.read()
-df2 = conn.read("Sheet3")
+df2 = conn.read(worksheet = "Sheet3")
 singlecell = conn.read(usecols = [0])
 
 dff = pd.DataFrame({conn})
