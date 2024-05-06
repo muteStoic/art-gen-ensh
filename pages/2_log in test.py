@@ -39,6 +39,24 @@ if st.button("Login"):
             st.write(password)
         else:
             st.write("incorrect password")
+    if userid == userDb.at[1,"name"]:
+        username = "the user is " + str(userDb.at[1,"name"])
+        st.write(username)
+        if userpwd == userDb.at[1,"password"]:
+            password = "the pwd is correct:" + str(userDb.at[1,"password"])
+            st.write(password)
+        else:
+            st.write("incorrect password")
+    if userid == userDb.at[2,"name"]:
+        username = "the user is " + str(userDb.at[2,"name"])
+        st.write(username)
+        if userpwd == userDb.at[2,"password"]:
+            password = "the pwd is correct:" + str(userDb.at[2,"password"])
+            st.write(password)
+        else:
+            st.write("incorrect password")
+    else:
+        st.write("no user found")
         
 
 
