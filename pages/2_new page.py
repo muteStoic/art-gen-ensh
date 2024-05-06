@@ -20,6 +20,8 @@ dff = pd.DataFrame( {
    })
 cell_val = dff.iloc[2]["y"]
 
+st.write(cell_val)
+
 for row in df.itertuples():
     st.write(f"{row.name} has a :{row.pet}:")
 
