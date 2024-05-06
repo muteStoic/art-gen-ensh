@@ -3,6 +3,9 @@ from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 import time
 
+if 'userfound' not in st.session_state:
+    st.session_state.userfound = False
+
 st.write("test")
 
 # Create a connection object.
@@ -31,11 +34,11 @@ userpwd = st.text_input("User Password")
 
 if st.button("Login"):
     st.write("log in test")
-    userfound = False
+    
     if userid == userDb.at[0,"name"]:
         username = "the user is " + str(userDb.at[0,"name"])
         st.write(username)
-        userfound == True
+        st.session_state.userfound
         if userpwd == userDb.at[0,"password"]:
             password = "the pwd is correct:" + str(userDb.at[0,"password"])
             st.write(password)
@@ -44,7 +47,7 @@ if st.button("Login"):
     if userid == userDb.at[1,"name"]:
         username = "the user is " + str(userDb.at[1,"name"])
         st.write(username)
-        userfound == True
+        st.session_state.userfound
         if userpwd == userDb.at[1,"password"]:
             password = "the pwd is correct:" + str(userDb.at[1,"password"])
             st.write(password)
@@ -53,7 +56,7 @@ if st.button("Login"):
     if userid == userDb.at[2,"name"]:
         username = "the user is " + str(userDb.at[2,"name"])
         st.write(username)
-        userfound == True
+        st.session_state.userfound
         if userpwd == userDb.at[2,"password"]:
             password = "the pwd is correct:" + str(userDb.at[2,"password"])
             st.write(password)
@@ -61,7 +64,7 @@ if st.button("Login"):
             st.write("incorrect password")
     
 
-    if userfound == False:
+    if st.session_state.userfound == False:
         st.write("no user found")
         
 
