@@ -15,7 +15,10 @@ singlecell = conn.read(usecols = [0])
 
 dff = pd.DataFrame({conn})
 
-st.write(df.at[4,"pet"])
+id_loc = df.at[4,"pet"]
+
+st.write(id_loc)
+
 
 
 for row in df.itertuples():
