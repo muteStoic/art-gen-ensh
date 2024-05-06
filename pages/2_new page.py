@@ -10,6 +10,7 @@ st.write("test4")
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 df = conn.read()
-
+singlecell = conn.read(worksheet = "Sheet1",ttl="0",
+                       usecols= [0,1],nrows = 3)
 st.dataframe(df)
 st.write("test3")
