@@ -32,7 +32,7 @@ userpwd = st.text_input("User Password")
 if st.button("Login"):
     st.write("log in test")
     if userid == userDb.at[0,"name"]:
-        username = "the user is " + userDb.at[0,"name"]
+        username = "the user is " + str(userDb.at[0,"name"])
         st.write("the user is ")
         
 
