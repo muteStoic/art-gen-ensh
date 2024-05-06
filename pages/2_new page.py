@@ -10,7 +10,7 @@ st.write("test4")
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 df = conn.read()
-singlecell = conn.Dataframe(index = True)
+singlecell = conn.read(usecols = [0])
 
 
 
