@@ -13,11 +13,10 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 df = conn.read()
 singlecell = conn.read(usecols = [0])
 
-dff = pd.DataFrame({df})
+dff = pd.DataFrame({conn})
 
 st.write(dff)
 
-st.write(cell_val)
 
 for row in df.itertuples():
     st.write(f"{row.name} has a :{row.pet}:")
