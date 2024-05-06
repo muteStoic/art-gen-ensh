@@ -13,8 +13,9 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 df = conn.read()
 singlecell = conn.read(usecols = [0])
 
-dff = pd.DataFrame( {conn})
-cell_val = dff.iloc[3]["pet"]
+dff = pd.DataFrame({conn})
+st.write(f"{2.name} has a :{2.pet}:")
+#cell_val = dff.iloc[3]["pet"]
 
 st.write(cell_val)
 
