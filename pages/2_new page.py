@@ -13,11 +13,7 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 df = conn.read()
 singlecell = conn.read(usecols = [0])
 
-dff = pd.DataFrame( {
-      "x": [5, 2, 1, 9],
-      "pet": [4, 1, 5, 10],
-      "z": [4, 1, 5, 0]
-   })
+dff = pd.DataFrame( {conn})
 cell_val = dff.iloc[3]["pet"]
 
 st.write(cell_val)
