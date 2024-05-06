@@ -14,6 +14,7 @@ df = conn.read()
 singlecell = conn.read(usecols = [0])
 
 dff = pd.DataFrame({conn})
+dff.iloc[1][1]
 
 for row in df.itertuples():
     st.write(f"{row.name} has a :{row.pet}:")
