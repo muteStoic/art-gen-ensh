@@ -12,7 +12,7 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 
 df = conn.read()
 #df2 = conn.read(worksheet = "Sheet3")
-singlecell = conn.read()
+singlecell = conn.read(usecols = [0])
 
 dff = pd.DataFrame({singlecell})
 
