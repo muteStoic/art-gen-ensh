@@ -19,7 +19,7 @@ dff = df.at[3,"name"]
 
 #id_loc = dff.at[3,"name"]
 
-#st.write(id_loc)
+st.write(dff)
 
 
 
