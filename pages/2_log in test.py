@@ -31,9 +31,11 @@ userpwd = st.text_input("User Password")
 
 if st.button("Login"):
     st.write("log in test")
+    userfound = False
     if userid == userDb.at[0,"name"]:
         username = "the user is " + str(userDb.at[0,"name"])
         st.write(username)
+        userfound == True
         if userpwd == userDb.at[0,"password"]:
             password = "the pwd is correct:" + str(userDb.at[0,"password"])
             st.write(password)
@@ -42,6 +44,7 @@ if st.button("Login"):
     if userid == userDb.at[1,"name"]:
         username = "the user is " + str(userDb.at[1,"name"])
         st.write(username)
+        userfound == True
         if userpwd == userDb.at[1,"password"]:
             password = "the pwd is correct:" + str(userDb.at[1,"password"])
             st.write(password)
@@ -50,12 +53,15 @@ if st.button("Login"):
     if userid == userDb.at[2,"name"]:
         username = "the user is " + str(userDb.at[2,"name"])
         st.write(username)
+        userfound == True
         if userpwd == userDb.at[2,"password"]:
             password = "the pwd is correct:" + str(userDb.at[2,"password"])
             st.write(password)
         else:
             st.write("incorrect password")
-    else:
+    
+
+    if userfound == False:
         st.write("no user found")
         
 
