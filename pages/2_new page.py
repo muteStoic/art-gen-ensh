@@ -10,7 +10,7 @@ st.write("test4")
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 df = conn.read()
-singlecell = conn.read(usecols = [0])
+singlecell = conn.iloc[2,2]
 
 
 
