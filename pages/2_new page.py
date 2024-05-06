@@ -16,7 +16,7 @@ singlecell = conn.read(
     spreadsheet ="https://docs.google.com/spreadsheets/d/1QIbtWBhbykxaEGtE3bb_vFz5yGnyiUF6Lll1S_IdhCc/edit?usp=sharing")
 
 #dff = pd.DataFrame({singlecell})
-#dff = singlecell.at[3,"name"]
+dff = singlecell.at[2,"name"]
 st.dataframe(singlecell)
 
 #id_loc = dff.at[3,"name"]
