@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit_gsheets import GSheetsConnection
 import pandas as pd
+import time
 
 st.write("test")
 
@@ -25,7 +26,12 @@ st.dataframe(userDb)
 st.write(dff)
 st.dataframe(df)
 
-userid = st.text_input("idLabel")
+userid = st.text_input("User Id")
 
+userpwd = st.text_input("User Password")
+
+if st.button("Login"):
+    with st.write("log in test"):
+        time.sleep(3)
 
 
