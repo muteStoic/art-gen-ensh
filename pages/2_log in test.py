@@ -10,10 +10,11 @@ st.write("test")
 
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
-conn2 = st.connection("gsheets2", type=GSheetsConnection)
+conn2 = st.connection("gsheets", type=GSheetsConnection)
 
-df = conn.read()
-#p12 = conn2.read()
+df = conn.read(worksheet="Sheet3")
+st.dataframe(df)
+p12 = conn.read(worksheet="Sheet1")
 
 userDb = conn.read(
     spreadsheet ="https://docs.google.com/spreadsheets/d/1QIbtWBhbykxaEGtE3bb_vFz5yGnyiUF6Lll1S_IdhCc/edit?usp=sharing",
@@ -29,10 +30,10 @@ userDb.iloc[4,1] = 50
 tokenuse = st.text_input("token use")
 if st.button("add token"):
     userDb.iloc[0,3] = tokenuse
-    userDb = conn.update(data = userDb)
+    userDb = conn2.update(worksheet="Sheet3" ,data = userDb)
 
 
-testdb = st.dataframe(userDb)
+st.dataframe(p12)
 
 
 
