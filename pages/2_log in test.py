@@ -10,21 +10,31 @@ st.write("test")
 
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
+conn2 = st.connection("gsheets2", type=GSheetsConnection)
 
 df = conn.read()
+#p12 = conn2.read()
+
 userDb = conn.read(
-    spreadsheet ="https://docs.google.com/spreadsheets/d/1QIbtWBhbykxaEGtE3bb_vFz5yGnyiUF6Lll1S_IdhCc/edit?usp=sharing")
+    spreadsheet ="https://docs.google.com/spreadsheets/d/1QIbtWBhbykxaEGtE3bb_vFz5yGnyiUF6Lll1S_IdhCc/edit?usp=sharing",
+    usecols = [0,1,2,3]
+    )
 
 dff = userDb.at[0,"name"]
 
+#st.dataframe(p12)
 
 
+userDb.iloc[4,1] = 50
+tokenuse = st.text_input("token use")
+if st.button("add token"):
+    userDb.iloc[0,3] = tokenuse
+    userDb = conn.update(data = userDb)
 
 
+testdb = st.dataframe(userDb)
 
 
-
-st.dataframe(userDb)
 
 st.write(dff)
 
@@ -44,7 +54,7 @@ if st.button("Login"):
             st.write(password)
         else:
             st.write("incorrect password")
-    if userid == userDb.at[1,"name"]:
+    elif userid == userDb.at[1,"name"]:
         username = "the user is " + str(userDb.at[1,"name"])
         st.write(username)
         st.session_state.userfound = True
@@ -53,7 +63,7 @@ if st.button("Login"):
             st.write(password)
         else:
             st.write("incorrect password")
-    if userid == userDb.at[2,"name"]:
+    elif userid == userDb.at[2,"name"]:
         username = "the user is " + str(userDb.at[2,"name"])
         st.write(username)
         st.session_state.userfound = True
@@ -62,12 +72,11 @@ if st.button("Login"):
             st.write(password)
         else:
             st.write("incorrect password")
+    else:
+        st.session_state.userfound = False
+        st.write("no user found")
     
 
-    if st.session_state.userfound == False:
-        st.write("no user found")
-
-st.write(st.session_state.threadid)
         
 
 
