@@ -3,13 +3,25 @@ import streamlit as st
 from openai import OpenAI
 import time
 import random
+import requests
+from requests.auth import HTTPBasicAuth
 
 
 client = OpenAI()
 
+assistandid = "asst_271d6dtCJd3QxDvSpU1rzYJd"
+
+api_url = "https://www.zenosyne.info/wp-json/wp/v2/posts"
+
 top_text = "What article do you want to generate today?"
 
+username = "roboaut"
+password = "HOpI 1u2n j4CP ZTt2 uRwx amFb"
+article_status = "publish"
 
+
+if 'cur_article' not in st.session_state:
+    st.session_state.cur_article = []
 
 
 if 'article_generated' not in st.session_state:
@@ -26,15 +38,32 @@ if 'timer' not in st.session_state:
     st.session_state.timer = 0
 
 
-
-assistandid = "asst_271d6dtCJd3QxDvSpU1rzYJd"
-
 if 'threadid' not in st.session_state:
     st.session_state.threadid = "Generate to create thread id"
  
+username = "roboaut"
+password = "HOpI 1u2n j4CP ZTt2 uRwx amFb"
+article_status = "publish"
 
 
 
+def publish():
+
+    post_data = {
+    "title": "test title",
+    "content": st.session_state.cur_article,
+    "status": article_status,
+
+}
+    
+    print("run function")
+    response = requests.post( 
+    api_url, 
+    auth=HTTPBasicAuth(username, password), 
+    json=post_data, 
+) 
+    return print(response)
+ 
 
 
 
@@ -72,6 +101,8 @@ def buttonstyle_4():
 
     save_message(message)
     run_open_AI()
+
+
 
 
 
@@ -120,6 +151,8 @@ def run_open_AI():
         response = last_message.content[0].text.value
         print(response)
         st.session_state.article_generated.append(response)
+        st.session_state.cur_article = response
+        #st.session_state.cur_article = '"""' + st.session_state.cur_article + '"""'
         st.session_state.ai_generate = response
         #ai_generate.append(response)
         
@@ -175,6 +208,26 @@ def main(message):
         #st.session_state.timer = 0
     #processing()
     #ai_generate.append("fasefe")
+
+
+def main_publish():
+    
+    
+
+
+    message = "change the current article to html. make the conversion as just text HTML so i can copy paste it. i just want the <pr>, <br> and etc. i do not need the DOCTYPE info."
+    with st.spinner('Sending Message'):
+        save_message(message)
+
+    with st.spinner('Generating Article'):
+        run_open_AI()
+
+    st.session_state.status_check = False
+
+    publish()
+    print("publish done")
+            
+
     
 
 
@@ -238,7 +291,9 @@ with st.container():
 
 
     with col2:
-        st.status("Ready to start.",state = "running", expanded=False)
+        if st.button("Publish",disabled = st.session_state.status_check, use_container_width = True):
+            main_publish()
+
            
 
         st.write(st.session_state.threadid)
