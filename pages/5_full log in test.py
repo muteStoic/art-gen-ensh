@@ -11,7 +11,7 @@ if 'loginId' not in st.session_state:
 if 'loginPwd' not in st.session_state:
     st.session_state.loginPwd = ""
 
-if 'loginstatus' not in st.session_state:
+if 'loginStatus' not in st.session_state:
     st.session_state.loginStatus = False
 
 status = ""
