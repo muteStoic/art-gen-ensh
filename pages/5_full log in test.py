@@ -6,6 +6,15 @@ import time
 if 'validUser' not in st.session_state:
     st.session_state.validUser = False
 
+if not st.session_state.validUser:
+    with st.sidebar:
+        st.write("Please Log in") 
+
+else:
+    with st.sidebar:
+        st.write("User: " + str(st.session_state.user))
+        st.write("Token used: " + str(int(userDb.at[0,"token"])))
+
 
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)

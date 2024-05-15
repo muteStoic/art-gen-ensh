@@ -10,6 +10,14 @@ if not st.session_state.validUser:
     st.warning("Require user to login before proceding. Please head to the 'Hello' page at the sidebar to log in")
     st.stop()
 
+if not st.session_state.validUser:
+    with st.sidebar:
+        st.write("Please Log in") 
+
+else:
+    with st.sidebar:
+        st.write("User: " + str(st.session_state.user))
+        st.write("Token used: " + str(int(userDb.at[0,"token"])))
     
 client = OpenAI()
 
