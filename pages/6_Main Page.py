@@ -259,7 +259,6 @@ else:
 
 
 
-st.sidebar.success("select page above")
 
 
 st.header(top_text, divider = "violet")
