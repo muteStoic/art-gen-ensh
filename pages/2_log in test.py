@@ -18,14 +18,16 @@ conn2 = st.connection("gsheets", type=GSheetsConnection)
 
 df = conn.read(
     spreadsheet="https://docs.google.com/spreadsheets/d/1Y5oaJN_XDAy6iM7yVAKKqIofI1WICOmYKWCD3OVQ8E0/edit?usp=sharing"
-    ,worksheet="Sheet3")
+    ,worksheet="Sheet3", usecols = [0,1,2,3])
 st.dataframe(df)
 p12 = conn.read(worksheet="Sheet1")
-
+""""
 userDb = conn.read(
     spreadsheet ="https://docs.google.com/spreadsheets/d/1QIbtWBhbykxaEGtE3bb_vFz5yGnyiUF6Lll1S_IdhCc/edit?usp=sharing",
     usecols = [0,1,2,3]
     )
+"""
+userDb = df
 
 dff = userDb.at[0,"name"]
 tokenloc = df.at[0 ,"token"]
@@ -34,17 +36,18 @@ st.write(tokenloc)
 #st.dataframe(p12)
 
 
-userDb.iloc[4,1] = 50
+df.iloc[4,1] = 50
 tokenuse = st.text_input("token use")
 if st.button("add token"):
+    st.write(df.at[0 ,"token"])
     tokenloc = df.at[0 ,"token"]
     tokenadd = int(tokenloc) + int(tokenuse)
-    userDb.iloc[0,3] = tokenadd
-    userDb = conn2.update(worksheet="Sheet3" ,data = userDb)
+    df.iloc[0,3] = tokenadd
+    df = conn2.update(worksheet="Sheet3" ,data = df)
     st.cache_data.clear()
 
 
-st.dataframe(p12)
+st.dataframe(df)
 
 
 
