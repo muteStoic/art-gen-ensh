@@ -9,13 +9,10 @@ if 'validUser' not in st.session_state:
 if 'user' not in st.session_state:
     st.session_state.user = ""
 
-if not st.session_state.validUser:
-    with st.sidebar:
-        st.write("Please Log in") 
+if 'tokenUsed' not in st.session_state:
+    st.session_state.tokenUsed = ""
 
-else:
-    with st.sidebar:
-        st.write(st.session_state.user)
+
 
 
 
@@ -29,6 +26,15 @@ userDb = conn.read(
     usecols = [0,1,2,3]
     )
 
+##section for the sidebar
+if not st.session_state.validUser:
+    with st.sidebar:
+        st.write("Please Log in") 
+
+else:
+    with st.sidebar:
+        st.write("User: " + str(st.session_state.user))
+        st.write("Token used" + str(st.session_state.tokenUsed))
 
 userid = st.text_input("User Id")
 
@@ -46,6 +52,7 @@ if st.button("Login"):
             st.session_state.validUser = True
             st.session_state.user = str(userDb.at[0,"id"])
             st.write("Login successful , welcome " + str(userDb.at[0,"id"]))
+            st.session_state.tokenUsed = str(userDb.at[0,"token"])
             time.sleep(3)
             st.switch_page("pages/6_Main Page.py")
         else:
