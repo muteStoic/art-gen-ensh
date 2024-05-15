@@ -46,6 +46,7 @@ if st.button("Login"):
             st.session_state.validUser = True
             st.session_state.user = str(userDb.at[0,"id"])
             st.write("Login successful , welcome " + str(userDb.at[0,"id"]))
+            st.rerun()
         else:
             st.write("incorrect password")
     elif userid == userDb.at[1,"id"]:
