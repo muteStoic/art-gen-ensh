@@ -23,7 +23,7 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 
 userDb = conn.read(
     spreadsheet ="https://docs.google.com/spreadsheets/d/1Y5oaJN_XDAy6iM7yVAKKqIofI1WICOmYKWCD3OVQ8E0/edit?usp=sharing",
-    usecols = [0,1,2,3]
+    usecols = [0,1,2,3,4]
     )
 
 st.write(str(userDb.at[0,"token"]))
