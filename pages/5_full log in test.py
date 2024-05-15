@@ -12,7 +12,7 @@ if 'loginPwd' not in st.session_state:
     st.session_state.loginPwd = ""
 
 if 'loginstatus' not in st.session_state:
-    st.session_state.loginstatus = False
+    st.session_state.loginStatus = False
 
 status = ""
 @st.experimental_dialog("Log in to continue")
@@ -21,11 +21,11 @@ def login():
     st.session_state.loginPwd = st.text_input("User Password")
 
     if st.button("Login"):
-        if st.session_state.loginID == "asd":
+        if st.session_state.loginId == "asd":
             status = "username correct"
-            if st.session_state.loginPWD == "123":
+            if st.session_state.loginPwd == "123":
                 status = "password correct"
-                st.session_state.loginstatus = True
+                st.session_state.loginStatus = True
             else:
                 status = "password incorrect"
         else:
@@ -36,7 +36,7 @@ def login():
     
 
     
-if st.session_state.loginstatus == False:
+if st.session_state.loginStatus == False:
     login()
 else:
-    st.write(st.session_state.loginstatus)
+    st.write(st.session_state.loginStatus)
