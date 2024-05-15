@@ -36,7 +36,7 @@ if not st.session_state.validUser:
 else:
     with st.sidebar:
         st.write("User: " + str(st.session_state.user))
-        st.write("Token used" + str(st.session_state.tokenUsed))
+        st.write("Token used" + str(int(userDb.at[0,"token"])))
 
 userid = st.text_input("User Id")
 
