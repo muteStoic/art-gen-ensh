@@ -1,44 +1,61 @@
 import streamlit as st
 from streamlit_gsheets import GSheetsConnection
 import pandas as pd
+import time
+
+if 'validUser' not in st.session_state:
+    st.session_state.validUser = False
 
 
-st.write("testingggg")
+# Create a connection object.
+conn = st.connection("gsheets", type=GSheetsConnection)
 
-if 'loginId' not in st.session_state:
-    st.session_state.loginId = ""
 
-if 'loginPwd' not in st.session_state:
-    st.session_state.loginPwd = ""
+userDb = conn.read(
+    spreadsheet ="https://docs.google.com/spreadsheets/d/1Y5oaJN_XDAy6iM7yVAKKqIofI1WICOmYKWCD3OVQ8E0/edit?usp=sharing",
+    usecols = [0,1,2,3]
+    )
 
-if 'loginStatus' not in st.session_state:
-    st.session_state.loginStatus = False
 
-status = ""
-@st.experimental_dialog("Log in to continue")
-def login():
-    st.session_state.loginId = st.text_input("User ID")
-    st.session_state.loginPwd = st.text_input("User Password")
+userid = st.text_input("User Id")
 
-    if st.button("Login"):
-        if st.session_state.loginId == "asd":
-            status = "username correct"
-            if st.session_state.loginPwd == "123":
-                status = "password correct"
-                st.session_state.loginStatus = True
-                st.rerun()
-            else:
-                status = "password incorrect"
-                st.rerun()
+userpwd = st.text_input("User Password")
+
+if st.button("Login"):
+    
+    if userid == userDb.at[0,"id"]:
+        username = "Log in successful. Welcome " + str(userDb.at[0,"id"])
+        #st.write(username)
+        
+        if userpwd == str(userDb.at[0,"password"]):
+            password = "the pwd is correct:" + str(userDb.at[0,"password"])
+            #st.write(password)
+            st.session_state.validUser = True
+            st.write("Login successful , welcome " + str(userDb.at[0,"id"]))
         else:
-            status = "username incorrect"
-            st.rerun()
+            st.write("incorrect password")
+    elif userid == userDb.at[1,"id"]:
+        username = "Log in successful. Welcome " + str(userDb.at[1,"id"])
+        st.write(username)
+        
+        if userpwd == str(userDb.at[1,"password"]):
+            password = "the pwd is correct:" + str(userDb.at[1,"password"])
+            #st.write(password)
+            st.session_state.validUser = True
+            st.write("Login successful , welcome " + str(userDb.at[1,"id"]))
+        else:
+            st.write("incorrect password")
+    elif userid == userDb.at[2,"id"]:
+        username = "Log in successful. Welcome " + str(userDb.at[2,"id"])
+        
+        if userpwd == str(userDb.at[2,"password"]):
+            password = "the pwd is correct:" + str(userDb.at[2,"password"])
+            #st.write(password)
+            st.session_state.validUser = True
+            st.write("Login successful , welcome " + str(userDb.at[2,"id"]))
+        else:
+            st.write("incorrect password")
+    else:
+        st.session_state.validUser = False
+        st.write("No user found")
     
-
-    
-
-    
-if st.session_state.loginStatus == False:
-    login()
-else:
-    st.write(st.session_state.loginStatus)

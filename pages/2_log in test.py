@@ -6,7 +6,11 @@ import time
 if 'userfound' not in st.session_state:
     st.session_state.userfound = False
 
-st.write("test123")
+if not st.session_state.validUser:
+    st.warning("Require user to login before proceding. Please head to the 'Log In Page' at the sidebar to log in")
+    st.stop()
+
+st.write("valid user " + str(st.session_state.validUser))
 
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)

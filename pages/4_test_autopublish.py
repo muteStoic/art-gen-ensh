@@ -2,6 +2,9 @@ import requests
 from requests.auth import HTTPBasicAuth
 import streamlit as st
 
+if not st.session_state.validUser:
+    st.warning("Require user to login before proceding. Please head to the 'Log In Page' at the sidebar to log in")
+    st.stop()
 
 api_url = "https://www.zenosyne.info/wp-json/wp/v2/posts"
 
