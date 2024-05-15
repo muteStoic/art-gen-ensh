@@ -12,7 +12,7 @@ if 'loginPwd' not in st.session_state:
     st.session_state.loginPwd = ""
 
 if 'loginStatus' not in st.session_state:
-    st.session_state.loginStatus = True
+    st.session_state.loginStatus = False
 
 status = ""
 @st.experimental_dialog("Log in to continue")
@@ -32,7 +32,7 @@ def login():
                 st.rerun()
         else:
             status = "username incorrect"
-        st.rerun()
+            st.rerun()
     
 
     
