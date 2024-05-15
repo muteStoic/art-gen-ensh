@@ -54,7 +54,7 @@ if st.button("Login"):
             st.session_state.validUser = True
             st.session_state.user = str(userDb.at[0,"id"])
             st.write("Login successful , welcome " + str(userDb.at[0,"id"]))
-            st.session_state.tokenUsed = str(userDb.at[0,"token"])
+            st.session_state.tokenUsed = userDb.at[0,"token"]
             time.sleep(3)
             st.switch_page("pages/6_Main Page.py")
         else:
