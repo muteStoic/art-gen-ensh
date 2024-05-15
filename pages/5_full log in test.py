@@ -30,6 +30,8 @@ def login():
                 status = "password incorrect"
         else:
             status = "username incorrect"
+        st.rerun()
+    
 
     
 
