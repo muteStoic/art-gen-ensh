@@ -12,7 +12,7 @@ if 'loginPwd' not in st.session_state:
     st.session_state.loginPwd = ""
 
 if 'loginStatus' not in st.session_state:
-    st.session_state.loginStatus = False
+    st.session_state.loginStatus = True
 
 status = ""
 @st.experimental_dialog("Log in to continue")
