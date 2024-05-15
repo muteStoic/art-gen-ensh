@@ -26,6 +26,8 @@ userDb = conn.read(
     usecols = [0,1,2,3]
     )
 
+st.write(str(userDb.at[0,"token"]))
+
 ##section for the sidebar
 if not st.session_state.validUser:
     with st.sidebar:
