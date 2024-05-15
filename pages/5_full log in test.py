@@ -26,8 +26,10 @@ def login():
             if st.session_state.loginPwd == "123":
                 status = "password correct"
                 st.session_state.loginStatus = True
+                st.rerun()
             else:
                 status = "password incorrect"
+                st.rerun()
         else:
             status = "username incorrect"
         st.rerun()
