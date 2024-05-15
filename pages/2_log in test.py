@@ -28,7 +28,7 @@ userDb = conn.read(
     )
 
 dff = userDb.at[0,"name"]
-tokenloc = df.at[0 ,"token used"]
+tokenloc = df.at[0 ,"token"]
 st.write(tokenloc)
 
 #st.dataframe(p12)
@@ -37,7 +37,7 @@ st.write(tokenloc)
 userDb.iloc[4,1] = 50
 tokenuse = st.text_input("token use")
 if st.button("add token"):
-    tokenloc = df.at[0 ,"token used"]
+    tokenloc = df.at[0 ,"token"]
     tokenadd = int(tokenloc) + int(tokenuse)
     userDb.iloc[0,3] = tokenadd
     userDb = conn2.update(worksheet="Sheet3" ,data = userDb)
