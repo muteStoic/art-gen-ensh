@@ -13,7 +13,7 @@ if not st.session_state.validUser:
 else:
     with st.sidebar:
         st.write("User: " + str(st.session_state.user))
-        st.write("Token used: " + str(int(userDb.at[0,"token"])))
+        st.write("Token used: " + str(int(st.session_state.tokenUsed)))
 
 api_url = "https://www.zenosyne.info/wp-json/wp/v2/posts"
 
