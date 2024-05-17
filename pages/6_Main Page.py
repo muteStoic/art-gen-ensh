@@ -1,6 +1,8 @@
 
 import streamlit as st
 from openai import OpenAI
+from streamlit_gsheets import GSheetsConnection
+import pandas as pd
 import time
 import random
 import requests
@@ -20,6 +22,22 @@ else:
 if not st.session_state.validUser:
     st.warning("Require user to login before proceding. Please head to the 'Hello' page at the sidebar to log in")
     st.stop()
+
+conn = st.connection("gsheets", type=GSheetsConnection)
+
+df = conn.read(
+    spreadsheet="https://docs.google.com/spreadsheets/d/1Y5oaJN_XDAy6iM7yVAKKqIofI1WICOmYKWCD3OVQ8E0/edit?usp=sharing"
+    ,worksheet="Sheet3", usecols = [0,1,2,3])
+
+
+dff = conn.read(
+    spreadsheet="https://docs.google.com/spreadsheets/d/1Y5oaJN_XDAy6iM7yVAKKqIofI1WICOmYKWCD3OVQ8E0/edit?usp=sharing"
+    ,worksheet="Sheet3", usecols = [0,1,2,3])
+
+print(df.at[0,"token"])
+curtoken = df.at[0,"token"]
+st.dataframe(df)
+dff = df
     
 client = OpenAI()
 
@@ -29,9 +47,7 @@ api_url = "https://www.zenosyne.info/wp-json/wp/v2/posts"
 
 top_text = "What article do you want to generate today?"
 
-username = "roboaut"
-password = "HOpI 1u2n j4CP ZTt2 uRwx amFb"
-article_status = "publish"
+
 
 
 if 'cur_article' not in st.session_state:
@@ -57,7 +73,7 @@ if 'threadid' not in st.session_state:
  
 username = "roboaut"
 password = "HOpI 1u2n j4CP ZTt2 uRwx amFb"
-article_status = "publish"
+article_status = "draft"
 
 
 
@@ -178,7 +194,15 @@ def run_open_AI():
 
             
         run_open_AI()
-            
+    print(run.usage.total_tokens)
+    
+    tokenloc = curtoken
+    tokenadd = int(tokenloc) + int(run.usage.total_tokens)
+    dff.iloc[0,3] = tokenadd
+    st.session_state.tokenUsed = tokenadd
+    dff = conn.update(worksheet="Sheet1" ,data = dff)
+    st.cache_data.clear()  
+    print(st.session_state.tokenUsed)     
     #return ai_generate
     
 
