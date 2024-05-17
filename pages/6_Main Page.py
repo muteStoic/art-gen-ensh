@@ -10,14 +10,6 @@ from requests.auth import HTTPBasicAuth
 
 
 
-if not st.session_state.validUser:
-    with st.sidebar:
-        st.write("Please Log in") 
-
-else:
-    with st.sidebar:
-        st.write("User: " + str(st.session_state.user))
-        st.write("Token used: " + str(int(st.session_state.tokenUsed)))
 
 if not st.session_state.validUser:
     st.warning("Require user to login before proceding. Please head to the 'Hello' page at the sidebar to log in")
@@ -30,14 +22,11 @@ df = conn.read(
     ,worksheet="Sheet3", usecols = [0,1,2,3])
 
 
-dff = conn.read(
-    spreadsheet="https://docs.google.com/spreadsheets/d/1Y5oaJN_XDAy6iM7yVAKKqIofI1WICOmYKWCD3OVQ8E0/edit?usp=sharing"
-    ,worksheet="Sheet3", usecols = [0,1,2,3])
+
 
 print(df.at[0,"token"])
 curtoken = df.at[0,"token"]
-st.dataframe(df)
-dff = df
+
     
 client = OpenAI()
 
@@ -196,13 +185,18 @@ def run_open_AI():
         run_open_AI()
     print(run.usage.total_tokens)
     
+    df = conn.read(
+    spreadsheet="https://docs.google.com/spreadsheets/d/1Y5oaJN_XDAy6iM7yVAKKqIofI1WICOmYKWCD3OVQ8E0/edit?usp=sharing"
+    ,worksheet="Sheet3", usecols = [0,1,2,3])
+
     tokenloc = curtoken
     tokenadd = int(tokenloc) + int(run.usage.total_tokens)
-    dff.iloc[0,3] = tokenadd
+    df.iloc[0,3] = tokenadd
     st.session_state.tokenUsed = tokenadd
-    dff = conn.update(worksheet="Sheet1" ,data = dff)
+    df = conn.update(worksheet="Sheet3" ,data = df)
     st.cache_data.clear()  
-    print(st.session_state.tokenUsed)     
+    print(st.session_state.tokenUsed)    
+    
     #return ai_generate
     
 
@@ -372,3 +366,14 @@ with st.expander("Previous response"):
         st.write(st.session_state.article_generated)
 
 
+
+if not st.session_state.validUser:
+    with st.sidebar:
+        st.write("Please Log in") 
+
+else:
+    with st.sidebar:
+        st.write("User: " + str(st.session_state.user))
+        st.write("Token used: " + str(int(st.session_state.tokenUsed)))
+        money = (int(st.session_state.tokenUsed)/1000000) * 1.75
+        st.write("Money used: " + str(money))
