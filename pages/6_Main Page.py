@@ -65,7 +65,7 @@ password = "HOpI 1u2n j4CP ZTt2 uRwx amFb"
 article_status = "draft"
 
 
-
+print("test")
 def publish():
 
     post_data = {
