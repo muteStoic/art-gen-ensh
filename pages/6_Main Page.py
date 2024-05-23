@@ -71,7 +71,7 @@ def publish():
     post_data = {
     "title": "test title",
     "content": st.session_state.cur_article,
-    "status": "publish",
+    "status": "draft",
 
 }
     
@@ -88,7 +88,7 @@ def draft():
     post_data = {
     "title": "test title",
     "content": st.session_state.cur_article,
-    "status": "pending review",
+    "status": article_status,
 
 }
     
