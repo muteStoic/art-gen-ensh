@@ -88,7 +88,7 @@ def draft():
     post_data = {
     "title": "test title",
     "content": st.session_state.cur_article,
-    "status": "pdraft",
+    "status": "draft",
 
 }
     
