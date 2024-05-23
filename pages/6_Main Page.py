@@ -71,7 +71,7 @@ def publish():
     post_data = {
     "title": "test title",
     "content": st.session_state.cur_article,
-    "status": article_status,
+    "status": "publish",
 
 }
     
@@ -82,6 +82,24 @@ def publish():
     json=post_data, 
 ) 
     return print(response)
+
+def draft():
+
+    post_data = {
+    "title": "test title",
+    "content": st.session_state.cur_article,
+    "status": "pdraft",
+
+}
+    
+    print("run function")
+    response = requests.post( 
+    api_url, 
+    auth=HTTPBasicAuth(username, password), 
+    json=post_data, 
+) 
+    return print(response)
+ 
  
 
 
@@ -260,6 +278,23 @@ def main_publish():
     print("publish done")
             
 
+def main_draft():
+    
+    
+
+
+    message = "change the current article to html. make the conversion as just text HTML so i can copy paste it. i just want the <pr>, <br> and etc. i do not need the DOCTYPE info."
+    with st.spinner('Sending Message'):
+        save_message(message)
+
+    with st.spinner('Generating Article'):
+        run_open_AI()
+
+    st.session_state.status_check = False
+
+    draft()
+    print("publish done")
+
     
 
 
@@ -318,7 +353,8 @@ st.divider()
 with st.container():
     col1, col2, col3 = st.columns([1,4,4])
     with col1:
-        st.write("Status:")
+        if st.button("Draft",disabled = st.session_state.status_check, use_container_width = True):
+            main_draft()
 
 
     with col2:
