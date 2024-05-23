@@ -12,6 +12,8 @@ if 'user' not in st.session_state:
 if 'tokenUsed' not in st.session_state:
     st.session_state.tokenUsed = ""
 
+if 'userLoc' not in st.session_state:
+    st.session_state.userLoc = 0
 
 
 
@@ -46,8 +48,9 @@ userpwd = st.text_input("User Password")
 number_of_users = 2
 
 if st.button("Login"):
+    
 
-
+    """
     for nou in number_of_users:
         if userid == userDb.at[nou,"id"]:
             username = "Log in successful. Welcome " + str(userDb.at[nou,"id"])
@@ -67,10 +70,11 @@ if st.button("Login"):
         else:
             st.session_state.validUser = False
             st.write("No user found")
+            """
 
         
 
-    """""
+    
     if userid == userDb.at[0,"id"]:
         username = "Log in successful. Welcome " + str(userDb.at[0,"id"])
         #st.write(username)
@@ -82,6 +86,7 @@ if st.button("Login"):
             st.session_state.user = str(userDb.at[0,"id"])
             st.write("Login successful , welcome " + str(userDb.at[0,"id"]))
             st.session_state.tokenUsed = userDb.at[0,"token"]
+            st.session_state.userLoc = 0
             time.sleep(3)
             st.switch_page("pages/6_Main Page.py")
         else:
@@ -97,6 +102,7 @@ if st.button("Login"):
             st.session_state.user = str(userDb.at[1,"id"])
             st.write("Login successful , welcome " + str(userDb.at[1,"id"]))
             st.session_state.tokenUsed = userDb.at[1,"token"]
+            st.session_state.userLoc = 1
             time.sleep(3)
             st.switch_page("pages/6_Main Page.py")
         else:
@@ -111,6 +117,7 @@ if st.button("Login"):
             st.session_state.user = str(userDb.at[2,"id"])
             st.write("Login successful , welcome " + str(userDb.at[2,"id"]))
             st.session_state.tokenUsed = userDb.at[2,"token"]
+            st.session_state.userLoc = 2
             time.sleep(3)
             st.switch_page("pages/6_Main Page.py")
         else:
@@ -118,5 +125,5 @@ if st.button("Login"):
     else:
         st.session_state.validUser = False
         st.write("No user found")
-        """
+        
     

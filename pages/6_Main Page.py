@@ -191,7 +191,7 @@ def run_open_AI():
 
     tokenloc = curtoken
     tokenadd = int(tokenloc) + int(run.usage.total_tokens)
-    df.iloc[0,3] = tokenadd
+    df.iloc[st.session_state.userLoc,3] = tokenadd
     st.session_state.tokenUsed = tokenadd
     df = conn.update(worksheet="Sheet3" ,data = df)
     st.cache_data.clear()  
