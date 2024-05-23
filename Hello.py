@@ -43,8 +43,34 @@ userid = st.text_input("User Id")
 
 userpwd = st.text_input("User Password")
 
+number_of_users = 2
+
 if st.button("Login"):
-    
+
+
+    for nou in number_of_users:
+        if userid == userDb.at[nou,"id"]:
+            username = "Log in successful. Welcome " + str(userDb.at[nou,"id"])
+            #st.write(username)
+            
+            if userpwd == str(userDb.at[nou,"password"]):
+                password = "the pwd is correct:" + str(userDb.at[nou,"password"])
+                #st.write(password)
+                st.session_state.validUser = True
+                st.session_state.user = str(userDb.at[nou,"id"])
+                st.write("Login successful , welcome " + str(userDb.at[nou,"id"]))
+                st.session_state.tokenUsed = userDb.at[nou,"token"]
+                time.sleep(3)
+                st.switch_page("pages/6_Main Page.py")
+            else:
+                st.write("incorrect password")
+        else:
+            st.session_state.validUser = False
+            st.write("No user found")
+
+        
+
+    """""
     if userid == userDb.at[0,"id"]:
         username = "Log in successful. Welcome " + str(userDb.at[0,"id"])
         #st.write(username)
@@ -92,4 +118,5 @@ if st.button("Login"):
     else:
         st.session_state.validUser = False
         st.write("No user found")
+        """
     
