@@ -105,7 +105,7 @@ def draft():
 
 
 def buttonstyle_1():
-    message = "Revise the previous article you have generated to change the writing style . The writing style has to include Informative Tone, Maintain an informative tone throughout the article, providing valuable insights and well-considered opinions. Casual Language, Use casual language and colloquial expressions to make the article engaging and relatable for readers. Historical References, Include historical references to provide context and depth to the topic. Comparative Analysis, Conduct comparative analysis, highlighting the unique features and differences between the subjects being discussed. Engagement with Readers, Actively engage with readers by inviting them to share their opinions and comments on the topic. Include a call-to-action for readers to participate in the discussion. Listicle Format, Structure the article as a listicle, with each item accompanied by a brief description and evaluation. Blend of Description and Critique, lend descriptive elements, such as features and themes, with critical analysis, evaluating the strengths and weaknesses of each item."
+    message = "Do not greet the reader in the beginning of the article. revise the previous article you have generated to follow the new style as follows.  As a creative writer focused on game writing content, I bring humor and an informal style to my responses. I use simple language, avoiding complex words, and employ pop culture references and analogies to make game information both accessible and entertaining. My content is structured as a listicle with clear, catchy headings. I engage readers directly by using a conversational tone, posing questions, and encouraging interaction. I balance detail with brevity . I'm designed to help users understand and enjoy game information through engaging, humorous writing."
     #message = "revise the previou sarticle you generated to be more entertaining and bit more humourous. hide your thinking process and just deliver the revise article."
     st.session_state.article_generated.append(message)
 
@@ -114,7 +114,7 @@ def buttonstyle_1():
 
 
 def buttonstyle_2():
-    message = "Revise the previous article you have generated to change the writing style to blogging style. Infuse the article with light-hearted humor and clever wit to make the content enjoyable and entertaining. Use storytelling techniques: Make the article engaging by incorporating anecdotes, examples, and a narrative flow that captures the reader's interest from beginning to end. Add a bit of humour and wit: Infuse the article with light-hearted humor and clever wit to make the content enjoyable and entertaining. Use descriptive language: Employ vivid and descriptive language to paint a clear picture for the reader, making the information more tangible and easy to visualize. Casual tone: Maintain a friendly and relaxed tone throughout the article, as if you are having a casual conversation with the reader. Simple language complexity: Use simple and straightforward language to ensure the article is easy to understand for a wide audience."
+    message = "Do not greet the reader in the beginning of the article. Infuse consistent humor throughout your writing, including jokes, witty remarks, and amusing observations to keep it light and engaging. Employ imaginative analogies and metaphors to help the reader visualize and understand concepts in unexpected and memorable ways. Use conversational language that mimics advice from a witty and knowledgeable friend, making the tone informal and accessible. Utilize playful exaggeration for comedic effect, highlighting the absurdities or challenges of the topic in a light-hearted manner. Assign human attributes or behaviors to non-human elements (personification) to make the content more relatable and amusing. Craft an engaging introduction and conclusion with strong, humorous notes, setting a playful tone at the start and concluding with a punchline or insightful amusement at the end. Directly address the reader using 'you' to create a personal and engaging narrative, incorporating humorous asides and rhetorical questions to enhance engagement."
     #message = "revise the previous article you have generated to 'Old english' style of writing. "
     st.session_state.article_generated.append(message)
 
@@ -123,8 +123,9 @@ def buttonstyle_2():
     
 
 def buttonstyle_3():
+    message = "Revise the previous article you have generated to change the writing style to expository style. Do not greet the reader in the beginning of the article.  Make the article engaging by incorporating anecdotes, examples, and a narrative flow that captures the reader's interest from beginning to end. Infuse the article with light-hearted humor and clever wit to make the content enjoyable and entertaining. Employ vivid and descriptive language to paint a clear picture for the reader, making the information more tangible and easy to visualize."
 
-    message = "revise the previous article you have generated to follow the new style as follows.  As a creative writer focused on game writing content, I bring humor and an informal style to my responses. I use simple language, avoiding complex words, and employ pop culture references and analogies to make game information both accessible and entertaining. My content is structured as a listicle with clear, catchy headings. I engage readers directly by using a conversational tone, posing questions, and encouraging interaction. I balance detail with brevity . I'm designed to help users understand and enjoy game information through engaging, humorous writing."
+    #message = "revise the previous article you have generated to follow the new style as follows.  As a creative writer focused on game writing content, I bring humor and an informal style to my responses. I use simple language, avoiding complex words, and employ pop culture references and analogies to make game information both accessible and entertaining. My content is structured as a listicle with clear, catchy headings. I engage readers directly by using a conversational tone, posing questions, and encouraging interaction. I balance detail with brevity . I'm designed to help users understand and enjoy game information through engaging, humorous writing."
     st.session_state.article_generated.append(message)
 
     save_message(message)
@@ -132,13 +133,31 @@ def buttonstyle_3():
 
 
 def buttonstyle_4():
-
-    message = "Infuse consistent humor throughout your writing, including jokes, witty remarks, and amusing observations to keep it light and engaging. Employ imaginative analogies and metaphors to help the reader visualize and understand concepts in unexpected and memorable ways. Use conversational language that mimics advice from a witty and knowledgeable friend, making the tone informal and accessible. Utilize playful exaggeration for comedic effect, highlighting the absurdities or challenges of the topic in a light-hearted manner. Assign human attributes or behaviors to non-human elements (personification) to make the content more relatable and amusing. Craft an engaging introduction and conclusion with strong, humorous notes, setting a playful tone at the start and concluding with a punchline or insightful amusement at the end. Directly address the reader using 'you' to create a personal and engaging narrative, incorporating humorous asides and rhetorical questions to enhance engagement."
+    message = "Revise the previous article you have generated to change the writing style to blogging style. Do not greet the reader in the beginning of the article.  Infuse the article with light-hearted humor and clever wit to make the content enjoyable and entertaining. Use storytelling techniques: Make the article engaging by incorporating anecdotes, examples, and a narrative flow that captures the reader's interest from beginning to end. Add a bit of humour and wit: Infuse the article with light-hearted humor and clever wit to make the content enjoyable and entertaining. Use descriptive language: Employ vivid and descriptive language to paint a clear picture for the reader, making the information more tangible and easy to visualize. Casual tone: Maintain a friendly and relaxed tone throughout the article, as if you are having a casual conversation with the reader. Simple language complexity: Use simple and straightforward language to ensure the article is easy to understand for a wide audience."
+    #message = "Infuse consistent humor throughout your writing, including jokes, witty remarks, and amusing observations to keep it light and engaging. Employ imaginative analogies and metaphors to help the reader visualize and understand concepts in unexpected and memorable ways. Use conversational language that mimics advice from a witty and knowledgeable friend, making the tone informal and accessible. Utilize playful exaggeration for comedic effect, highlighting the absurdities or challenges of the topic in a light-hearted manner. Assign human attributes or behaviors to non-human elements (personification) to make the content more relatable and amusing. Craft an engaging introduction and conclusion with strong, humorous notes, setting a playful tone at the start and concluding with a punchline or insightful amusement at the end. Directly address the reader using 'you' to create a personal and engaging narrative, incorporating humorous asides and rhetorical questions to enhance engagement."
     st.session_state.article_generated.append(message)
 
     save_message(message)
     run_open_AI()
 
+
+def buttonstyle_5():
+    message = "Revise the previous article you have generated to change the writing style .  Do not greet the reader in the beginning of the article. The writing style has to include Informative Tone, Maintain an informative tone throughout the article, providing valuable insights and well-considered opinions. Casual Language, Use casual language and colloquial expressions to make the article engaging and relatable for readers. Historical References, Include historical references to provide context and depth to the topic. Comparative Analysis, Conduct comparative analysis, highlighting the unique features and differences between the subjects being discussed. Engagement with Readers, Actively engage with readers by inviting them to share their opinions and comments on the topic. Include a call-to-action for readers to participate in the discussion. Listicle Format, Structure the article as a listicle, with each item accompanied by a brief description and evaluation. Blend of Description and Critique, lend descriptive elements, such as features and themes, with critical analysis, evaluating the strengths and weaknesses of each item."
+
+    #message = "Infuse consistent humor throughout your writing, including jokes, witty remarks, and amusing observations to keep it light and engaging. Employ imaginative analogies and metaphors to help the reader visualize and understand concepts in unexpected and memorable ways. Use conversational language that mimics advice from a witty and knowledgeable friend, making the tone informal and accessible. Utilize playful exaggeration for comedic effect, highlighting the absurdities or challenges of the topic in a light-hearted manner. Assign human attributes or behaviors to non-human elements (personification) to make the content more relatable and amusing. Craft an engaging introduction and conclusion with strong, humorous notes, setting a playful tone at the start and concluding with a punchline or insightful amusement at the end. Directly address the reader using 'you' to create a personal and engaging narrative, incorporating humorous asides and rhetorical questions to enhance engagement."
+    st.session_state.article_generated.append(message)
+
+    save_message(message)
+    run_open_AI()
+
+def buttonstyle_6():
+    message = "Revise the previous article you have generated to change the writing style. Do not greet the reader in the beginning of the article. The new writing style has to include informal, conversational, and filled with humor and lots of sarcasm. to keep the reader entertained. Use some Pop Culture References, Employ some pop culture references to make the content relatable and engaging. Best to use gaming pop culture. Use of Profanity and Exaggerated Descriptions, Use profanity and exaggerated descriptions to convey opinions and experiences with intensity and flair. Casual and Colloquial Language, Use casual and colloquial language to engage the reader in a more personal and relatable way. Repetition, Exaggeration, and Comparison, Employ repetition, exaggeration, and comparison to make points more entertaining and memorable. Anecdotes and Comparisons, Incorporate anecdotes and comparisons to add humor and light-heartedness to the article."
+
+    #message = "Infuse consistent humor throughout your writing, including jokes, witty remarks, and amusing observations to keep it light and engaging. Employ imaginative analogies and metaphors to help the reader visualize and understand concepts in unexpected and memorable ways. Use conversational language that mimics advice from a witty and knowledgeable friend, making the tone informal and accessible. Utilize playful exaggeration for comedic effect, highlighting the absurdities or challenges of the topic in a light-hearted manner. Assign human attributes or behaviors to non-human elements (personification) to make the content more relatable and amusing. Craft an engaging introduction and conclusion with strong, humorous notes, setting a playful tone at the start and concluding with a punchline or insightful amusement at the end. Directly address the reader using 'you' to create a personal and engaging narrative, incorporating humorous asides and rhetorical questions to enhance engagement."
+    st.session_state.article_generated.append(message)
+
+    save_message(message)
+    run_open_AI()
 
 
 
@@ -334,16 +353,20 @@ with st.container():
         st.divider()
         col1, col2 = st.columns([0.5, 0.5])
         with col1:
-            if st.button("Style 1", use_container_width = True, disabled = st.session_state.status_check):
+            if st.button("listicle", use_container_width = True, disabled = st.session_state.status_check):
                 buttonstyle_1()
 
-            if st.button("Style 2", use_container_width = True, disabled = st.session_state.status_check):
+            if st.button("escapist 1", use_container_width = True, disabled = st.session_state.status_check):
                 buttonstyle_2()
         with col2:
-            if st.button("Style 3", use_container_width = True, disabled = st.session_state.status_check):
+            if st.button("expository", use_container_width = True, disabled = st.session_state.status_check):
                 buttonstyle_3()
-            if st.button("Style 4", use_container_width = True, disabled = st.session_state.status_check):
+            if st.button("blogging", use_container_width = True, disabled = st.session_state.status_check):
                 buttonstyle_4()
+            if st.button("RPS article", use_container_width = True, disabled = st.session_state.status_check):
+                buttonstyle_5()
+            if st.button("escapist 2", use_container_width = True, disabled = st.session_state.status_check):
+                buttonstyle_6()
 
 
 
