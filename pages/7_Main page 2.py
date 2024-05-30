@@ -105,7 +105,7 @@ def draft():
 
 
 def buttonstyle_1():
-    message = "Do not greet the reader in the beginning of the article. revise the previous article you have generated to follow the new style as follows.  As a creative writer focused on game writing content, I bring humor and an informal style to my responses. I use simple language, avoiding complex words, and employ pop culture references and analogies to make game information both accessible and entertaining. My content is structured as a listicle with clear, catchy headings. I engage readers directly by using a conversational tone, posing questions, and encouraging interaction. I balance detail with brevity . I'm designed to help users understand and enjoy game information through engaging, humorous writing."
+    message = "Do not greet the reader in the beginning of the article. use the information gathered to craft an article.  As a creative writer focused on game writing content, I bring humor and an informal style to my responses. I use simple language, avoiding complex words, and employ pop culture references and analogies to make game information both accessible and entertaining. My content is structured as a listicle with clear, catchy headings. I engage readers directly by using a conversational tone, posing questions, and encouraging interaction. I balance detail with brevity . I'm designed to help users understand and enjoy game information through engaging, humorous writing."
     #message = "revise the previou sarticle you generated to be more entertaining and bit more humourous. hide your thinking process and just deliver the revise article."
     st.session_state.article_generated.append(message)
 
