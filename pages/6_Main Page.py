@@ -105,8 +105,8 @@ def draft():
 
 
 def buttonstyle_1():
-
-    message = "revise the previou sarticle you generated to be more entertaining and bit more humourous. hide your thinking process and just deliver the revise article."
+    message = "Revise the previous article you have generated to change the writing style to match with the points below:Informative Tone: Maintain an informative tone throughout the article, providing valuable insights and well-considered opinions. Casual Language: Use casual language and colloquial expressions to make the article engaging and relatable for readers. Historical References: Include historical references to provide context and depth to the topic. Comparative Analysis: Conduct comparative analysis, highlighting the unique features and differences between the subjects being discussed. Engagement with Readers: Actively engage with readers by inviting them to share their opinions and comments on the topic. Include a call-to-action for readers to participate in the discussion. Listicle Format: Structure the article as a listicle, with each item accompanied by a brief description and evaluation. Blend of Description and Critique: Blend descriptive elements, such as features and themes, with critical analysis, evaluating the strengths and weaknesses of each item."
+    #message = "revise the previou sarticle you generated to be more entertaining and bit more humourous. hide your thinking process and just deliver the revise article."
     st.session_state.article_generated.append(message)
 
     save_message(message)
@@ -114,8 +114,8 @@ def buttonstyle_1():
 
 
 def buttonstyle_2():
-
-    message = "revise the previous article you have generated to 'Old english' style of writing. "
+    message = "Revise the previous article you have generated to change the writing style to blogging style. Infuse the article with light-hearted humor and clever wit to make the content enjoyable and entertaining. Use storytelling techniques: Make the article engaging by incorporating anecdotes, examples, and a narrative flow that captures the reader's interest from beginning to end. Add a bit of humour and wit: Infuse the article with light-hearted humor and clever wit to make the content enjoyable and entertaining. Use descriptive language: Employ vivid and descriptive language to paint a clear picture for the reader, making the information more tangible and easy to visualize. Casual tone: Maintain a friendly and relaxed tone throughout the article, as if you are having a casual conversation with the reader. Simple language complexity: Use simple and straightforward language to ensure the article is easy to understand for a wide audience."
+    #message = "revise the previous article you have generated to 'Old english' style of writing. "
     st.session_state.article_generated.append(message)
 
     save_message(message)
