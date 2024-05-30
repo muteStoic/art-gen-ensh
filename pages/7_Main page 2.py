@@ -30,7 +30,7 @@ curtoken = df.at[0,"token"]
     
 client = OpenAI()
 
-assistandid = "vs_tYwX1tsHttm2MQi9VOdEhd2Y"
+assistandid = "asst_YKTzFq8pYFxpZaWZMi6QzPay"
 
 api_url = "https://www.zenosyne.info/wp-json/wp/v2/posts"
 
